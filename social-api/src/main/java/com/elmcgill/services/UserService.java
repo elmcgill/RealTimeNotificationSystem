@@ -28,8 +28,8 @@ public class UserService {
                 ro.email(),
                 ro.password(),
                 ro.username(),
-                new HashSet<>(),
-                new HashSet<>());
+                new HashSet<>()
+        );
 
         try{
 

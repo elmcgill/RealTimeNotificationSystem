@@ -6,6 +6,9 @@ import com.elmcgill.models.User;
 import com.elmcgill.repositories.ConnectionRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 public class ConnectionService {
 
@@ -23,6 +26,10 @@ public class ConnectionService {
         Connection connection = new Connection(0L, followedUser, followingUser);
 
         connectionRepository.save(connection);
+    }
+
+    public Set<Connection> getFollowerList(User followedUser){
+        return connectionRepository.findByFollowedUser(followedUser).orElse(new HashSet<>());
     }
 
 }
