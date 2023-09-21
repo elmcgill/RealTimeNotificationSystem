@@ -7,9 +7,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class NotificationListeners {
 
+    private final NotificationService notificationService;
+
+    public NotificationListeners(NotificationService notificationService){
+        this.notificationService = notificationService;
+    }
+
     @KafkaListener(topics = "notifications", groupId = "com.elmcgill")
     public void consumeNotification(Notification notification){
-        System.out.println(notification);
+        notificationService.sendNotification(notification);
     }
 
 }
